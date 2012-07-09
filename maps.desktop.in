@@ -1,0 +1,9 @@
+[Desktop Entry]
+_Name=Maps
+_Comment=Maps application
+Categories=GNOME;Utility;
+Exec=maps %U
+Icon=/usr/share/maps/media/maps.svg
+Terminal=false
+Type=Application
+MimeType=application/gpx+xml;application/xml

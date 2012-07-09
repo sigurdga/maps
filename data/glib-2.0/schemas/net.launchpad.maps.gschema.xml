@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="maps">
+  <schema id="net.launchpad.maps" path="/net/launchpad/maps/">
+    <key type="d" name="latitude">
+      <default>0.0</default>
+      <summary>Startup latitude</summary>
+      <description>The latutude of the location that will be used for startup.</description>
+    </key>
+    <key type="d" name="longitude">
+      <default>0.0</default>
+      <summary>Startup longitude</summary>
+      <description>The longitude of the location that will be used for startup.</description>
+    </key>
+    <key type="i" name="zoom">
+      <default>5</default>
+      <summary>Startup zoom level</summary>
+      <description>The zoom level of the map when starting up.</description>
+    </key>
+  </schema>
+</schemalist>
