@@ -3,3 +3,4 @@ version = 12.04
 template = ubuntu-application
 lp_id = maps
 ppa = maps
+bzrbranch = lp:~sigurdga/maps/quickly_trunk/

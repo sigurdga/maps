@@ -7,7 +7,7 @@ else
 endif
 
 override_dh_auto_install:
-	dh_auto_install -- --install-scripts=/opt/extras.ubuntu.com/maps                 --install-data=/opt/extras.ubuntu.com/maps                 --install-lib=/opt/extras.ubuntu.com/maps
+	dh_auto_install -- --install-scripts=/opt/extras.ubuntu.com/maps/bin                 --install-data=/opt/extras.ubuntu.com/maps                 --install-lib=/opt/extras.ubuntu.com/maps
 
 override_dh_python2:
 	dh_python2 /opt/extras.ubuntu.com/maps
@@ -21,7 +21,7 @@ override_dh_install:
 		mkdir -p debian/maps/usr/share/applications; \
 		mv debian/maps/opt/extras.ubuntu.com/maps/share/applications/maps.desktop debian/maps/usr/share/applications/extras-maps.desktop; \
 		rmdir --ignore-fail-on-non-empty debian/maps/opt/extras.ubuntu.com/maps/share/applications; \
-		sed -i 's|Exec=.*|Exec=/opt/extras.ubuntu.com/maps/bin/maps|' debian/maps/usr/share/applications/extras-maps.desktop; \
+		sed -i 's|Exec=[^ ]*|Exec=/opt/extras.ubuntu.com/maps/bin/maps|' debian/maps/usr/share/applications/extras-maps.desktop; \
 		sed -i 's|Icon=/usr/|Icon=/opt/extras.ubuntu.com/maps/|' debian/maps/usr/share/applications/extras-maps.desktop; \
 	fi
 	grep -RlZ 'import gettext' debian/maps/* | xargs -0 -r sed -i 's|\(import\) gettext$$|\1 locale|'

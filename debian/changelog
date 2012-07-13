@@ -1,3 +1,10 @@
+maps (12.07.4) precise; urgency=low
+
+  * Remove and ignore icon-cache
+  * Remove .git
+
+ -- Sigurd Gartmann <sigurdga-ubuntu@sigurdga.no>  Fri, 13 Jul 2012 18:46:06 +0200
+
 maps (12.07.3) precise; urgency=low
 
   * Initial release.
