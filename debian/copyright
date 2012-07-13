@@ -1,0 +1,10 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: maps
+Upstream-Contact: Sigurd Gartmann <sigurdga-ubuntu@sigurdga.no>
+Source: https://launchpad.net/maps
+
+Files: *
+Copyright: (C) 2012 Sigurd Gartmann sigurdga-ubuntu@sigurdga.no
+License: GPL-3
+ The full text of the GPL is distributed in
+ /usr/share/common-licenses/GPL-3 on Debian systems.

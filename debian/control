@@ -1,0 +1,25 @@
+Source: maps
+Section: python
+Priority: extra
+Build-Depends: debhelper (>= 6), libglib2.0-bin, python (>= 2.6.6-3~),
+ python-distutils-extra (>= 2.10)
+Maintainer: Sigurd Gartmann <sigurdga-ubuntu@sigurdga.no>
+Standards-Version: 3.9.3
+XS-Python-Version: current
+
+Package: maps
+Architecture: all
+XB-Python-Version: ${python:Versions}
+Depends: ${misc:Depends},
+ ${python:Depends},
+ gir1.2-champlain-0.12,
+ gir1.2-gtkchamplain-0.12,
+ gir1.2-gtk-3.0,
+ gir1.2-glib-2.0,
+ gir1.2-clutter-1.0,
+ gir1.2-gdkpixbuf-2.0,
+ python-lxml,
+ gir1.2-gtkclutter-1.0
+Description: Maps for Gnome and Ubuntu
+ Simple map application for browsing, searching and getting directions.
+ Can also show GPX traces.
