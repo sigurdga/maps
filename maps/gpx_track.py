@@ -81,5 +81,5 @@ class GpxTrack(object):
                 if text:
                     marker.set_text(text)
                 marker.set_location(lat, lon)
-                self.store.append([text, True, marker])
+                # self.store.append([text, True, marker])  # enable this to show markers in sidebar
                 self.marker_layer.add_marker(marker)
