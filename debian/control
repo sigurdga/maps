@@ -21,8 +21,7 @@ Depends: ${misc:Depends},
  gir1.2-gdkpixbuf-2.0,
  python-lxml,
  gir1.2-gtkclutter-1.0,
- yelp,
- python-rsvg
+ yelp
 Description: Maps for Gnome and Ubuntu
  Simple openstreetmap client application for browsing, searching and getting directions.
  Can also show GPX traces by opening from menu or dropping from file system.
