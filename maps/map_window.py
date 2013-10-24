@@ -283,8 +283,16 @@ class MapWindow(Gtk.ApplicationWindow):
             #self.store[path][2].show()
 
     def on_drag_data_received(self, window, context, x, y, data, info, time):
-        g = GpxTrack(self.view, self.trackstore)
-        g.import_file(data.get_text().strip())
+        filename = data.get_text().strip()
+        track = GpxTrack(self.view, self.trackstore)
+        try:
+            track.import_file(filename)
+        except:
+            print "Import error, could not find %s" % filename
+        else:
+            track.show()
+            track.go_to()
+            self.sidebartogglebutton.set_active(True)
 
     def on_result_clicked(self, selection):
         model, treeiter = selection.get_selected()
@@ -436,11 +444,16 @@ class MapWindow(Gtk.ApplicationWindow):
 
         response = dialog.run()
         if response == Gtk.ResponseType.OK:
-            track = GpxTrack(self.view, self.store)
-            track.import_file(dialog.get_filename())
-            track.show()
-            track.go_to()
-            self.sidebartogglebutton.set_active(True)
+            filename = dialog.get_filename()
+            track = GpxTrack(self.view, self.trackstore)
+            try:
+                track.import_file(filename)
+            except:
+                print "Import error, could not find %s" % filename
+            else:
+                track.show()
+                track.go_to()
+                self.sidebartogglebutton.set_active(True)
 
         elif response == Gtk.ResponseType.CANCEL:
             print "Cancel clicked"
