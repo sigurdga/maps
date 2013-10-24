@@ -22,9 +22,9 @@
 
 from gi.repository import Gio # pylint: disable=E0611
 
-import gettext
-from gettext import gettext as _
-gettext.textdomain('maps')
+import locale
+from locale import gettext as _
+locale.textdomain('maps')
 
 import logging
 logger = logging.getLogger('maps')

@@ -17,9 +17,9 @@
 import sys
 import optparse
 
-import gettext
-from gettext import gettext as _
-gettext.textdomain('maps')
+import locale
+from locale import gettext as _
+locale.textdomain('maps')
 
 from maps.map_application import MapApplication
 from maps_lib import set_up_logging, get_version
