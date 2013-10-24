@@ -53,9 +53,11 @@ class ResultView(object):
         self.directionstore = directionstore
         self.directionmarkers = directionmarkers
 
-    def show(self, text=""):
+    def show(self, text="", widget=1):
         self.label.set_text(text)
         self.widget.show()
+        self.widget.get_children()[widget].show()
+        self.widget.get_children()[3-widget].hide()
         self.marker_layer.show()
         self.directionmarkers.show()
 

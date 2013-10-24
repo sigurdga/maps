@@ -169,7 +169,12 @@ class MapWindow(Gtk.ApplicationWindow):
 
         searchview = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         searchview.pack_start(searchheader, False, False, 0)
-        searchview.pack_end(searchlist, True, True, 0)
+
+        swH_search = Gtk.ScrolledWindow() ## ADD THE SCROLLBAR
+        swH_search.set_vexpand(False)
+        swH_search.add(searchlist)
+        searchview.pack_end(swH_search, True, True, 0)
+
         vpaned.pack1(searchview)
 
         ############
@@ -197,7 +202,10 @@ class MapWindow(Gtk.ApplicationWindow):
         directionlist.append_column(column_time)
         directionlist.append_column(column_distance)
 
-        searchview.pack_end(directionlist, True, True, 0)
+        swH_direction = Gtk.ScrolledWindow() ## ADD THE SCROLLBAR
+        swH_direction.set_vexpand(False)
+        swH_direction.add(directionlist)
+        searchview.pack_end(swH_direction, True, True, 0)
 
         ########
         # Places
@@ -431,7 +439,7 @@ class MapWindow(Gtk.ApplicationWindow):
         searcher = Searcher(marker_layer, resultview.liststore)
         text = searchfield.get_text()
         searcher.search(text)
-        resultview.show("Results for: %s" % text)
+        resultview.show("Results for: %s" % text, 2) ## 2 -> show search results
 
         marker_layer.show()
 
@@ -442,23 +450,23 @@ class MapWindow(Gtk.ApplicationWindow):
             error = guide.search(fromfield.get_marker(), tofield.get_marker())
             if not error:
                 marker_layer.show()
-                resultview.show("Directions")
+                resultview.show("Directions", 1) ## 1 -> show directions
                 directionlist.show()
             else:
-                resultview.show(error)
+                resultview.show(error, 1) ## 1 -> show directions
         else:
             marker_layer = resultview.marker_layer
             if tofield.get_text() and not tofield.get_marker():
                 searcher = Searcher(marker_layer, resultview.liststore)
                 text = tofield.get_text()
                 searcher.search(text)
-                resultview.show("Possible destination locations named: %s" % text)
+                resultview.show("Possible destination locations named: %s" % text, 2) ## 2 -> show search results
                 marker_layer.show()
             elif fromfield.get_text() and not fromfield.get_marker():
                 searcher = Searcher(marker_layer, resultview.liststore)
                 text = fromfield.get_text()
                 searcher.search(text)
-                resultview.show("Possible departure locations named: %s" % text)
+                resultview.show("Possible departure locations named: %s" % text, 2) ## 2 -> show search results
                 marker_layer.show()
             else:
                 print "Invalid search"
@@ -467,7 +475,7 @@ class MapWindow(Gtk.ApplicationWindow):
         guide = Guide(self.application, marker_layer, directionlist.get_model())
         guide.search(1,1)
         marker_layer.show()
-        resultview.show("Directions")
+        resultview.show("Directions", 1) ## 1 -> show directions
         directionlist.show()
 
     def add_filters(self, dialog):
