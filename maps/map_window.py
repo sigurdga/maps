@@ -14,6 +14,7 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### END LICENSE
 
+
 from gi.repository import Gtk, Gdk, GdkPixbuf, Champlain
 
 from maps.searcher import Searcher, Guide, ResultView
