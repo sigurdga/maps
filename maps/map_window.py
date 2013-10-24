@@ -410,7 +410,7 @@ class MapWindow(Gtk.ApplicationWindow):
         marker_list.set_cursor(0, column=marker_list.get_column(0), start_editing=True)
 
     def on_marker_edited(self, cell, path, text, model):
-        if path != None:
+        if path != None and text != "":
             model[path][1].set_text(text)
             model[path][0] = text
 
