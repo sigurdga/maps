@@ -53,7 +53,7 @@ class GpxTrack(object):
         locations = tree.xpath("//*[local-name()='trkpt']")
         waypoints = tree.xpath("//*[local-name()='wpt']")
 
-        layeriter = self.store.append(None, [self.name, True, self])
+        self.store.append([self.name, True, self])
 
         for location in locations:
             lat = float(location.attrib['lat'])
@@ -81,5 +81,5 @@ class GpxTrack(object):
                 if text:
                     marker.set_text(text)
                 marker.set_location(lat, lon)
-                self.store.append(layeriter, [text, True, marker])
+                self.store.append([text, True, marker])
                 self.marker_layer.add_marker(marker)

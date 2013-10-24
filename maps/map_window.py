@@ -221,6 +221,17 @@ class MapWindow(Gtk.ApplicationWindow):
         column_name = Gtk.TreeViewColumn("Places", render_name, text=0)
         placelist.append_column(column_name)
 
+        ########
+        # Tracks
+        ########
+
+        self.trackstore = Gtk.ListStore(str, bool, object)  # name, boolean, track
+        tracklist = Gtk.TreeView(self.trackstore)
+
+        render_name = Gtk.CellRendererText()
+        column_name = Gtk.TreeViewColumn("Tracks", render_name, text=0)
+        tracklist.append_column(column_name)
+
         # Other
 
         self.sidebar = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
@@ -228,6 +239,7 @@ class MapWindow(Gtk.ApplicationWindow):
         markerbutton = Gtk.Button(label="Mark place")
         self.sidebar.pack_start(markerbutton, False, False, 10)
         self.sidebar.pack_start(placelist, False, False, 0)
+        self.sidebar.pack_start(tracklist, False, False, 0)
 
         hpaned.pack2(self.sidebar, False, False)
 
@@ -271,7 +283,7 @@ class MapWindow(Gtk.ApplicationWindow):
             #self.store[path][2].show()
 
     def on_drag_data_received(self, window, context, x, y, data, info, time):
-        g = GpxTrack(self.view, self.store)
+        g = GpxTrack(self.view, self.trackstore)
         g.import_file(data.get_text().strip())
 
     def on_result_clicked(self, selection):

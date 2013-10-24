@@ -138,8 +138,7 @@ class MapApplication(Gtk.Application):
 
     def on_open(self, action, parameter):
         if hasattr(self.window, "on_import_clicked"):
-            self.window.on_import_clicked(action, parameter)
-            print "ran open"
+            self.window.on_import_clicked(action)
 
 
     #def do_startup(self):
