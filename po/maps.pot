@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-09 18:40+0200\n"
+"POT-Creation-Date: 2013-10-24 13:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,6 @@ msgstr ""
 msgid "Show debug messages (-vv debugs maps_lib also)"
 msgstr ""
 
-#. Code for other initialization actions should be added here.
 #: ../maps.desktop.in.h:1
 msgid "Maps"
 msgstr ""

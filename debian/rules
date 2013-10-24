@@ -6,27 +6,4 @@ else
 	dh $@ --with python2
 endif
 
-override_dh_auto_install:
-	dh_auto_install -- --install-scripts=/opt/extras.ubuntu.com/maps/bin                 --install-data=/opt/extras.ubuntu.com/maps                 --install-lib=/opt/extras.ubuntu.com/maps
 
-override_dh_python2:
-	dh_python2 /opt/extras.ubuntu.com/maps
-
-
-override_dh_install:
-	dh_install
-	mkdir -p debian/maps/opt/extras.ubuntu.com/maps/bin
-	if [ -x debian/maps/opt/extras.ubuntu.com/maps/maps/maps ]; then mv debian/maps/opt/extras.ubuntu.com/maps/maps/maps debian/maps/opt/extras.ubuntu.com/maps/bin; fi
-	if [ -f debian/maps/opt/extras.ubuntu.com/maps/share/applications/maps.desktop ]; then \
-		mkdir -p debian/maps/usr/share/applications; \
-		mv debian/maps/opt/extras.ubuntu.com/maps/share/applications/maps.desktop debian/maps/usr/share/applications/extras-maps.desktop; \
-		rmdir --ignore-fail-on-non-empty debian/maps/opt/extras.ubuntu.com/maps/share/applications; \
-		sed -i 's|Exec=[^ ]*|Exec=/opt/extras.ubuntu.com/maps/bin/maps|' debian/maps/usr/share/applications/extras-maps.desktop; \
-		sed -i 's|Icon=/usr/|Icon=/opt/extras.ubuntu.com/maps/|' debian/maps/usr/share/applications/extras-maps.desktop; \
-	fi
-	grep -RlZ 'import gettext' debian/maps/* | xargs -0 -r sed -i 's|\(import\) gettext$$|\1 locale|'
-	grep -RlZ 'from gettext import gettext as _' debian/maps/* | xargs -0 -r sed -i 's|from gettext \(import gettext as _\)|from locale \1|'
-	grep -RlZ "gettext.textdomain('maps')" debian/maps/* | xargs -0 -r sed -i "s|gettext\(\.textdomain('maps')\)|locale\.bindtextdomain('maps', '/opt/extras.ubuntu.com/maps/share/locale')\nlocale\1|" 
-	sed -i "s|__maps_data_directory__ =.*|__maps_data_directory__ = '/opt/extras.ubuntu.com/maps/share/maps/'|" debian/maps/opt/extras.ubuntu.com/maps/maps*/mapsconfig.py
-	sed -i 's|        sys.path.insert(0, opt_path)|\0\n    os.putenv("XDG_DATA_DIRS", "%s:%s" % ("/opt/extras.ubuntu.com/maps/share/", os.getenv("XDG_DATA_DIRS", "")))|' debian/maps/opt/extras.ubuntu.com/maps/bin/maps
-	if [ -d debian/maps/opt/extras.ubuntu.com/maps/share/glib-2.0/schemas ]; then glib-compile-schemas debian/maps/opt/extras.ubuntu.com/maps/share/glib-2.0/schemas; fi

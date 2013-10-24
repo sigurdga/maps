@@ -1,4 +1,4 @@
-maps (12.07.4) precise; urgency=low
+maps (12.07.4) saucy; urgency=low
 
   * Remove and ignore icon-cache
   * Remove .git

@@ -1,7 +1,8 @@
 Source: maps
 Section: python
 Priority: extra
-Build-Depends: debhelper (>= 8), libglib2.0-bin, python (>= 2.6.6-3~),
+Build-Depends: debhelper (>= 8),
+ python (>= 2.6.6-3~),
  python-distutils-extra (>= 2.10)
 Maintainer: Sigurd Gartmann <sigurdga-ubuntu@sigurdga.no>
 Standards-Version: 3.9.3
@@ -19,7 +20,9 @@ Depends: ${misc:Depends},
  gir1.2-clutter-1.0,
  gir1.2-gdkpixbuf-2.0,
  python-lxml,
- gir1.2-gtkclutter-1.0
+ gir1.2-gtkclutter-1.0,
+ yelp,
+ python-rsvg
 Description: Maps for Gnome and Ubuntu
- Simple map application for browsing, searching and getting directions.
- Can also show GPX traces.
+ Simple openstreetmap client application for browsing, searching and getting directions.
+ Can also show GPX traces by opening from menu or dropping from file system.
