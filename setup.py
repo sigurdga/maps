@@ -136,7 +136,7 @@ class InstallAndUpdateDataDirectory(DistUtilsExtra.auto.install_auto):
 
 DistUtilsExtra.auto.setup(
     name='maps',
-    version='13.10.0',
+    version='14.03.1',
     license='GPL-3',
     author='Sigurd Gartmann',
     author_email='sigurdga-ubuntu@sigurdga.no',

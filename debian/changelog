@@ -1,3 +1,21 @@
+maps (14.03.1) saucy; urgency=low
+
+  * New release.
+
+ -- Sigurd Gartmann <sigurdga-ubuntu@sigurdga.no>  Fri, 07 Mar 2014 14:02:40 +0100
+
+maps (14.03ubuntu1) saucy; urgency=low
+
+  * Pre-upgrade checkpoint
+
+ -- Sigurd Gartmann <sigurdga-ubuntu@sigurdga.no>  Fri, 07 Mar 2014 13:48:04 +0100
+
+maps (14.03) saucy; urgency=low
+
+  * Pre-upgrade checkpoint
+
+ -- Sigurd Gartmann <sigurdga-ubuntu@sigurdga.no>  Fri, 07 Mar 2014 13:48:03 +0100
+
 maps (12.07.4) saucy; urgency=low
 
   * Remove and ignore icon-cache

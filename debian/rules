@@ -6,4 +6,9 @@ else
 	dh $@ --with python2
 endif
 
+override_dh_auto_install:
+	dh_auto_install -- --install-scripts=/opt/extras.ubuntu.com/maps/bin                 --install-data=/opt/extras.ubuntu.com/maps                 --install-lib=/opt/extras.ubuntu.com/maps
+
+override_dh_python2:
+	dh_python2 /opt/extras.ubuntu.com/maps
 
