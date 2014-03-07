@@ -20,6 +20,8 @@ import os
 
 from gi.repository import Champlain, GdkPixbuf
 
+KEY = "Fmjtd%7Cluur2l6t20%2C7s%3Do5-901xu6"
+
 class IconDownloader(object):
 
     def __init__(self, icon_cache, *args, **kwargs):
@@ -95,7 +97,8 @@ class Guide(object):
     def search(self, marker_position1, marker_position2):
         headers = { 'User-Agent' : 'StrekmannMapSearch/0.1' }
         request = urllib2.Request(
-                'http://open.mapquestapi.com/directions/v1/route?outFormat=json&from=%F,%F&to=%F,%F' % (
+                'http://open.mapquestapi.com/directions/v2/route?key=%s&outFormat=json&from=%F,%F&to=%F,%F' % (
+                    KEY,
                     marker_position1.get_latitude(), marker_position1.get_longitude(),
                     marker_position2.get_latitude(), marker_position2.get_longitude(),
                     ),
