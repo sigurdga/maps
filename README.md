@@ -6,10 +6,9 @@ an application like this in it's pipeline, in early design phase. I
 just wanted to see how far I could get on my own. And then I saw this
 Ubuntu application showdown a bit late.
 
-This application uses Mapquest for search and directions search, the
-open API using Openstreetmap data and not requiring an API key. Maps
-are standard tiles from Openstreetmap. I'm a mapper myself, and I think
-there is room for an application like this.
+This application uses Mapquest for search and directions search, the open API
+using Openstreetmap data. Maps are standard tiles from Openstreetmap. I'm a
+mapper myself, and I think there is room for an application like this.
 
 It will also show GPX tracks if you drag them to the Ubuntu launcher or
 to an open program.
@@ -33,6 +32,12 @@ Packages
 --------
 
 Ubuntu PPA: https://launchpad.net/~sigurdga/+archive/maps
+
+APIs used
+---------
+
+* [Mapquest Open Nominatim v1](http://open.mapquestapi.com/nominatim/)
+* [Mapquest Open Directions v2](http://open.mapquestapi.com/directions/)
 
 Contributions
 -------------
