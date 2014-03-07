@@ -28,10 +28,10 @@ Run from source
 Run it with quickly run from the project folder, having quickly installed. I
 will fix a runnable main without quickly pretty soon.
 
-Packages
---------
+Install Ubuntu PPA package
+--------------------------
 
-Ubuntu PPA: https://launchpad.net/~sigurdga/+archive/maps
+https://launchpad.net/~sigurdga/+archive/maps
 
 APIs used
 ---------
