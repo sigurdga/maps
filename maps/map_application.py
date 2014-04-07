@@ -21,9 +21,14 @@ from gi.repository import Champlain, GtkChamplain
 import os
 import tempfile
 
+import locale
+from locale import gettext as _
+locale.textdomain('maps')
+
 from maps_lib import get_version
 from maps.map_window import MapWindow
 from maps.gpx_track import GpxTrack
+
 
 class MapApplication(Gtk.Application):
 
@@ -59,20 +64,16 @@ class MapApplication(Gtk.Application):
         #######
 
         self.about = Gtk.AboutDialog()
-        self.about.set_program_name("Maps")
-        self.about.set_title("About Maps")
+        self.about.set_program_name(_("Maps"))
+        self.about.set_title(_("About Maps"))
         self.about.set_authors(["Sigurd Gartmann <sigurdga-ubuntu@sigurdga.no>"])
-        self.about.set_copyright("Copyright © 2012 Sigurd Gartmann <sigurdga-ubuntu@sigurdga.no>")
+        self.about.set_copyright(_("Copyright © 2012 Sigurd Gartmann <sigurdga-ubuntu@sigurdga.no>"))
         self.about.set_wrap_license(True)
-        self.about.set_comments(
-        "Early works on a generic map application for Gnome or Ubuntu. Gnome has"
-        "an application like this in it's pipeline, in early design phase. I"
-        "just wanted to see how far I could get on my own. And then I saw this"
-        "Ubuntu application showdown a bit late.\n\n"
+        self.about.set_comments(_(
+        "Early works on a generic map application for Gnome or Ubuntu.\n\n"
 
-        "This application uses Mapquest for search and directions search, the"
-        "open API using Openstreetmap data and not requiring an API key. Maps"
-        "are standard tiles from Openstreetmap. I'm a mapper myself, and I think"
+        "This application uses Mapquest Open for search and directions search,"
+        "and standard tiles from Openstreetmap. I'm a mapper myself, and I think"
         "there is room for an application like this.\n\n"
 
         "It will also show GPX tracks if you drag them to the Ubuntu launcher or"
@@ -82,11 +83,8 @@ class MapApplication(Gtk.Application):
         "listing will highlight the result. For searches, a double click will"
         "save the location to 'My places'. During directions search, a double"
         "click in the results will set proper locations to be able to search for"
-        "directions.\n\n"
-
-        "This is only a start… localization, icons, save 'my places' and drag"
-        "and drop from 'my places' to direction search fields, are planned."
-        )
+        "directions."
+        ))
         #self.about.set_license("GPL 3+")
         self.about.set_version(get_version())
 
@@ -111,9 +109,9 @@ class MapApplication(Gtk.Application):
         self.add_action(about_action)
         self.add_action(quit_action)
         menu = Gio.Menu()
-        menu.append("Open track", "app.open")
-        menu.append("About maps", "app.about")
-        menu.append("Quit", "app.quit")
+        menu.append(_("Open track"), "app.open")
+        menu.append(_("About Maps"), "app.about")
+        menu.append(_("Quit"), "app.quit")
         self.set_app_menu(menu)
 
     def do_activate(self):
@@ -129,8 +127,7 @@ class MapApplication(Gtk.Application):
                 g = GpxTrack(self.window.view, self.window.store)
                 g.import_file(gpx_file)
             except:
-                print "ERROR: %s was not a functional GPX file"
-
+                print("ERROR: %s was not a functional GPX file")
 
     def on_quit(self, action, parameter):
         self.save()

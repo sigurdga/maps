@@ -17,8 +17,13 @@
 
 from gi.repository import Gtk, Gdk, GdkPixbuf, Champlain
 
+import locale
+from locale import gettext as _
+locale.textdomain('maps')
+
 from maps.searcher import Searcher, Guide, ResultView
 from maps.gpx_track import GpxTrack
+
 
 class SearchLayer(Champlain.MarkerLayer):
 
@@ -36,6 +41,7 @@ class PlaceLayer(Champlain.MarkerLayer):
     def __init__(self, mapview, *args, **kwargs):
         super(PlaceLayer, self).__init__(*args, **kwargs)
         self.mapview = mapview
+
 
 class MarkerEntry(Gtk.Entry):
     def __init__(self, *args, **kwargs):
@@ -55,7 +61,7 @@ class MarkerEntry(Gtk.Entry):
 class MapWindow(Gtk.ApplicationWindow):
 
     def __init__(self, application, mapwidget):
-        Gtk.Window.__init__(self, title="Maps", application=application)
+        Gtk.Window.__init__(self, title=_("Maps"), application=application)
         self.application = application
         self.settings = application.settings
         self.application.window = self
@@ -68,24 +74,24 @@ class MapWindow(Gtk.ApplicationWindow):
         toolbar = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         vbox.pack_start(toolbar, False, False, 0)
 
-        self.sidebartogglebutton = Gtk.ToggleButton(label="More")
+        self.sidebartogglebutton = Gtk.ToggleButton(label=_("More"))
         self.sidebartogglebutton.connect("toggled", self.on_sidebar_toggle, "1")
         toolbar.pack_end(self.sidebartogglebutton, False, False, 0)
 
-        markerstogglebutton = Gtk.ToggleButton(label="Show markers")
+        markerstogglebutton = Gtk.ToggleButton(label=_("Show markers"))
         toolbar.pack_end(markerstogglebutton, False, False, 5)
 
-        searchradiobutton = Gtk.ToggleButton(label="Search")
-        directionsradiobutton = Gtk.ToggleButton(label="Directions")
+        searchradiobutton = Gtk.ToggleButton(label=_("Search"))
+        directionsradiobutton = Gtk.ToggleButton(label=_("Directions"))
         searchfield = Gtk.Entry()
-        searchfield.set_placeholder_text("Search")
-        searchbutton = Gtk.Button(label="Search")
+        searchfield.set_placeholder_text(_("Search"))
+        searchbutton = Gtk.Button(label=_("Search"))
         searchbutton.set_can_default(True)
         fromfield = MarkerEntry()
-        fromfield.set_placeholder_text("From")
+        fromfield.set_placeholder_text(_("From"))
         tofield = MarkerEntry()
-        tofield.set_placeholder_text("To")
-        directionsbutton = Gtk.Button(label="Search")
+        tofield.set_placeholder_text(_("To"))
+        directionsbutton = Gtk.Button(label=_("Search"))
         directionsbutton.set_can_default(True)
 
         searchradiobutton.connect("clicked", self.on_searchradiobutton_clicked, directionsradiobutton, searchfield, searchbutton, directionsbutton)
@@ -122,7 +128,7 @@ class MapWindow(Gtk.ApplicationWindow):
         self.view.add_layer(placemarkers)
         self.view.add_layer(directionmarkers)
         license = self.view.get_license_actor()
-        license.set_extra_text("Search and directions from Mapquest Open")
+        license.set_extra_text(_("Search and directions from Mapquest Open"))
         mapwidget.set_size_request(640, 480)
 
         self.connect('drag-data-received', self.on_drag_data_received)
@@ -130,7 +136,6 @@ class MapWindow(Gtk.ApplicationWindow):
         DRAG_ACTION = Gdk.DragAction.COPY
         self.drag_dest_set(Gtk.DestDefaults.ALL, [], DRAG_ACTION)
         self.drag_dest_add_text_targets()
-
 
         #bbox = self.path_layer.get_bounding_box()
         #self.view.ensure_visible(bbox, True)
@@ -156,7 +161,7 @@ class MapWindow(Gtk.ApplicationWindow):
         renderer_number = Gtk.CellRendererText()
         renderer_result = Gtk.CellRendererText()
         column_number = Gtk.TreeViewColumn("#", renderer_number, text=0)
-        column_result = Gtk.TreeViewColumn("Result", renderer_result, text=1)
+        column_result = Gtk.TreeViewColumn(_("Results"), renderer_result, text=1)
 
         searchlist.append_column(column_number)
         searchlist.append_column(column_result)
@@ -171,7 +176,7 @@ class MapWindow(Gtk.ApplicationWindow):
         searchview = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         searchview.pack_start(searchheader, False, False, 0)
 
-        swH_search = Gtk.ScrolledWindow() ## ADD THE SCROLLBAR
+        swH_search = Gtk.ScrolledWindow()  # ADD THE SCROLLBAR
         swH_search.set_vexpand(False)
         swH_search.add(searchlist)
         searchview.pack_end(swH_search, True, True, 0)
@@ -191,10 +196,10 @@ class MapWindow(Gtk.ApplicationWindow):
         renderer_right.set_property("xalign", 1)
         column_number = Gtk.TreeViewColumn("#", renderer_text, text=0)
         column_icon = Gtk.TreeViewColumn("", renderer_pixbuf, pixbuf=1)
-        column_narrative = Gtk.TreeViewColumn("Directions", renderer_text, text=2)
+        column_narrative = Gtk.TreeViewColumn(_("Directions"), renderer_text, text=2)
         column_narrative.set_expand(True)
-        column_distance = Gtk.TreeViewColumn("Distance", renderer_right, text=3)
-        column_time = Gtk.TreeViewColumn("Time", renderer_right, text=4)
+        column_distance = Gtk.TreeViewColumn(_("Distance"), renderer_right, text=3)
+        column_time = Gtk.TreeViewColumn(_("Time"), renderer_right, text=4)
         column_distance.set_alignment(1)
         column_time.set_alignment(1)
         directionlist.append_column(column_number)
@@ -203,7 +208,7 @@ class MapWindow(Gtk.ApplicationWindow):
         directionlist.append_column(column_time)
         directionlist.append_column(column_distance)
 
-        swH_direction = Gtk.ScrolledWindow() ## ADD THE SCROLLBAR
+        swH_direction = Gtk.ScrolledWindow()  # ADD THE SCROLLBAR
         swH_direction.set_vexpand(False)
         swH_direction.add(directionlist)
         searchview.pack_end(swH_direction, True, True, 0)
@@ -212,13 +217,13 @@ class MapWindow(Gtk.ApplicationWindow):
         # Places
         ########
 
-        placestore = Gtk.ListStore(str, object) # name, marker
+        placestore = Gtk.ListStore(str, object)  # name, marker
         placelist = Gtk.TreeView(placestore)
 
         render_name = Gtk.CellRendererText()
         render_name.set_property("editable", True)
         render_name.connect("edited", self.on_marker_edited, placestore)
-        column_name = Gtk.TreeViewColumn("Places", render_name, text=0)
+        column_name = Gtk.TreeViewColumn(_("Locations"), render_name, text=0)
         placelist.append_column(column_name)
 
         ########
@@ -229,14 +234,14 @@ class MapWindow(Gtk.ApplicationWindow):
         tracklist = Gtk.TreeView(self.trackstore)
 
         render_name = Gtk.CellRendererText()
-        column_name = Gtk.TreeViewColumn("Tracks", render_name, text=0)
+        column_name = Gtk.TreeViewColumn(_("Tracks"), render_name, text=0)
         tracklist.append_column(column_name)
 
         # Other
 
         self.sidebar = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 
-        markerbutton = Gtk.Button(label="Mark place")
+        markerbutton = Gtk.Button(label=_("Mark location"))
         self.sidebar.pack_start(markerbutton, False, False, 10)
         self.sidebar.pack_start(placelist, False, False, 0)
         self.sidebar.pack_start(tracklist, False, False, 0)
@@ -270,7 +275,6 @@ class MapWindow(Gtk.ApplicationWindow):
         directionsbutton.hide()
         searchview.hide()
 
-
     #def __on_entry_clicked(self, widget, event, data=None):
     #    if event.type == gtk.gdk.BUTTON_RELEASE:
 
@@ -288,7 +292,7 @@ class MapWindow(Gtk.ApplicationWindow):
         try:
             track.import_file(filename)
         except:
-            print "Import error, could not find %s" % filename
+            print(_("Import error: Could not find %(file)s") % {'file': filename})
         else:
             track.show()
             track.go_to()
@@ -296,12 +300,12 @@ class MapWindow(Gtk.ApplicationWindow):
 
     def on_result_clicked(self, selection):
         model, treeiter = selection.get_selected()
-        if treeiter != None:
+        if treeiter is not None:
             model[treeiter][2].animate_in()
 
     def on_store_changed(self, selection):
         model, treeiter = selection.get_selected()
-        if treeiter != None:
+        if treeiter is not None:
             try:
                 model[treeiter][2].go_to()
             except:
@@ -318,7 +322,7 @@ class MapWindow(Gtk.ApplicationWindow):
         """
 
         model, treeiter = selection.get_selected()
-        if treeiter != None:
+        if treeiter is not None:
             if directionsradiobutton.get_active():
                 if tofield.get_text() and not tofield.get_marker():
                     tofield.set_marker(model[treeiter][2])
@@ -430,12 +434,12 @@ class MapWindow(Gtk.ApplicationWindow):
         marker_list.set_cursor(0, column=marker_list.get_column(0), start_editing=True)
 
     def on_marker_edited(self, cell, path, text, model):
-        if path != None and text != "":
+        if path is not None and text != "":
             model[path][1].set_text(text)
             model[path][0] = text
 
     def on_import_clicked(self, widget):
-        dialog = Gtk.FileChooserDialog("Please choose a file", self,
+        dialog = Gtk.FileChooserDialog(_("Open file"), self,
             Gtk.FileChooserAction.OPEN,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
              Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
@@ -449,14 +453,14 @@ class MapWindow(Gtk.ApplicationWindow):
             try:
                 track.import_file(filename)
             except:
-                print "Import error, could not find %s" % filename
+                print(_("Import error: Could not find %(file)s" % {'file': filename}))
             else:
                 track.show()
                 track.go_to()
                 self.sidebartogglebutton.set_active(True)
 
         elif response == Gtk.ResponseType.CANCEL:
-            print "Cancel clicked"
+            pass
 
         dialog.destroy()
 
@@ -465,7 +469,7 @@ class MapWindow(Gtk.ApplicationWindow):
         searcher = Searcher(marker_layer, resultview.liststore)
         text = searchfield.get_text()
         searcher.search(text)
-        resultview.show("Results for: %s" % text, 2) ## 2 -> show search results
+        resultview.show(_("Results for: %(text)s" % {'text': text}), 2)  # 2 -> show search results
 
         marker_layer.show()
 
@@ -476,42 +480,41 @@ class MapWindow(Gtk.ApplicationWindow):
             error = guide.search(fromfield.get_marker(), tofield.get_marker())
             if not error:
                 marker_layer.show()
-                resultview.show("Directions", 1) ## 1 -> show directions
+                resultview.show(_("Directions"), 1)  # 1 -> show directions
                 directionlist.show()
             else:
-                resultview.show(error, 1) ## 1 -> show directions
+                resultview.show(error, 1)  # 1 -> show directions
         else:
             marker_layer = resultview.marker_layer
             if tofield.get_text() and not tofield.get_marker():
                 searcher = Searcher(marker_layer, resultview.liststore)
                 text = tofield.get_text()
                 searcher.search(text)
-                resultview.show("Possible destination locations named: %s" % text, 2) ## 2 -> show search results
+                resultview.show(_("Possible destination locations named: %(text)s" % {'text': text}), 2)  # 2 -> show search results
                 marker_layer.show()
             elif fromfield.get_text() and not fromfield.get_marker():
                 searcher = Searcher(marker_layer, resultview.liststore)
                 text = fromfield.get_text()
                 searcher.search(text)
-                resultview.show("Possible departure locations named: %s" % text, 2) ## 2 -> show search results
+                resultview.show(_("Possible departure locations named: %(text)s" % {'text': text}), 2)  # 2 -> show search results
                 marker_layer.show()
             else:
-                print "Invalid search"
+                print(_("Invalid search"))
 
     def on_test_directions(self, widget, marker_layer, resultview, directionlist):
         guide = Guide(self.application, marker_layer, directionlist.get_model())
-        guide.search(1,1)
+        guide.search(1, 1)
         marker_layer.show()
-        resultview.show("Directions", 1) ## 1 -> show directions
+        resultview.show(_("Directions"), 1)  # 1 -> show directions
         directionlist.show()
 
     def add_filters(self, dialog):
         filter_text = Gtk.FileFilter()
-        filter_text.set_name("GPX tracks")
+        filter_text.set_name(_("GPX tracks"))
         filter_text.add_pattern("*.gpx")
         dialog.add_filter(filter_text)
 
         filter_any = Gtk.FileFilter()
-        filter_any.set_name("Any files")
+        filter_any.set_name(_("Any files"))
         filter_any.add_pattern("*")
         dialog.add_filter(filter_any)
-
