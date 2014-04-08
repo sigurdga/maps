@@ -1,132 +1,132 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Norwegian Bokmal translations for PACKAGE package.
+# Copyright (C) 2014 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Sigurd Gartmann <sigurdga-ubuntu@sigurdga.no>, 2014.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-08 13:02+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2014-04-07 12:08+0200\n"
+"PO-Revision-Date: 2014-04-07 12:12+0200\n"
+"Last-Translator: Sigurd Gartmann <sigurdga-ubuntu@sigurdga.no>\n"
+"Language-Team: Norwegian Bokmal\n"
+"Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../maps/__init__.py:32
 msgid "Show debug messages (-vv debugs maps_lib also)"
-msgstr ""
+msgstr "Vis kjøreinformasjon"
 
 #: ../maps.desktop.in.h:1 ../maps/map_window.py:64
 #: ../maps/map_application.py:67
 msgid "Maps"
-msgstr ""
+msgstr "Kart"
 
 #: ../maps.desktop.in.h:2
 msgid "Maps application"
-msgstr ""
+msgstr "Kart"
 
 #: ../maps/map_window.py:77
 msgid "More"
-msgstr ""
+msgstr "Mer"
 
 #: ../maps/map_window.py:81
 msgid "Show markers"
-msgstr ""
+msgstr "Vis markører"
 
 #: ../maps/map_window.py:84 ../maps/map_window.py:87 ../maps/map_window.py:88
 #: ../maps/map_window.py:94
 msgid "Search"
-msgstr ""
+msgstr "Søk"
 
 #: ../maps/map_window.py:85 ../maps/map_window.py:199
 #: ../maps/map_window.py:483 ../maps/map_window.py:508
 msgid "Directions"
-msgstr ""
+msgstr "Veibeskrivelse"
 
 #: ../maps/map_window.py:91
 msgid "From"
-msgstr ""
+msgstr "Fra"
 
 #: ../maps/map_window.py:93
 msgid "To"
-msgstr ""
+msgstr "Til"
 
 #: ../maps/map_window.py:131
 msgid "Search and directions from Mapquest Open"
-msgstr ""
+msgstr "Søk og veibeskrivelse fra Mapquest Open"
 
 #: ../maps/map_window.py:164
 msgid "Results"
-msgstr ""
+msgstr "Resultater"
 
 #: ../maps/map_window.py:201
 msgid "Distance"
-msgstr ""
+msgstr "Avstand"
 
 #: ../maps/map_window.py:202
 msgid "Time"
-msgstr ""
+msgstr "Tid"
 
 #: ../maps/map_window.py:226
 msgid "Locations"
-msgstr ""
+msgstr "Steder"
 
 #: ../maps/map_window.py:237
 msgid "Tracks"
-msgstr ""
+msgstr "Spor"
 
 #: ../maps/map_window.py:244
 msgid "Mark location"
-msgstr ""
+msgstr "Marker sted"
 
 #: ../maps/map_window.py:295 ../maps/map_window.py:456
 #, python-format
 msgid "Import error: Could not find %(file)s"
-msgstr ""
+msgstr "Importeringsfeil: Kunne ikke finne %(file)s"
 
 #: ../maps/map_window.py:442
 msgid "Open file"
-msgstr ""
+msgstr "Åpne fil"
 
 #: ../maps/map_window.py:472
 #, python-format
 msgid "Results for: %(text)s"
-msgstr ""
+msgstr "Resultater for: %(text)s"
 
 #: ../maps/map_window.py:493
 #, python-format
 msgid "Possible destination locations named: %(text)s"
-msgstr ""
+msgstr "Mulige mål med navn: %(text)s"
 
 #: ../maps/map_window.py:499
 #, python-format
 msgid "Possible departure locations named: %(text)s"
-msgstr ""
+msgstr "Mulige startsteder med navn: %(text)s"
 
 #: ../maps/map_window.py:502
 msgid "Invalid search"
-msgstr ""
+msgstr "Ugyldig søk"
 
 #: ../maps/map_window.py:513
 msgid "GPX tracks"
-msgstr ""
+msgstr "GPS-spor"
 
 #: ../maps/map_window.py:518
 msgid "Any files"
-msgstr ""
+msgstr "Alle filer"
 
 #: ../maps/map_application.py:68 ../maps/map_application.py:113
 msgid "About Maps"
-msgstr ""
+msgstr "Om Kart"
 
 #: ../maps/map_application.py:70
 msgid "Copyright © 2012 Sigurd Gartmann <sigurdga-ubuntu@sigurdga.no>"
-msgstr ""
+msgstr "Opphavsrett @ 2012 Sigurd Gartmann <sigurdga-ubuntu@sigurdga.no>"
 
 #: ../maps/map_application.py:73
 msgid ""
@@ -147,8 +147,8 @@ msgstr ""
 
 #: ../maps/map_application.py:112
 msgid "Open track"
-msgstr ""
+msgstr "Åpne spor"
 
 #: ../maps/map_application.py:114
 msgid "Quit"
-msgstr ""
+msgstr "Lukk"
